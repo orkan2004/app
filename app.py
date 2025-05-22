@@ -3,7 +3,7 @@ from flask_socketio import SocketIO, emit
 import os  # ← 追加！
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 @app.route('/')
 def index():
