@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SocketIO Test</title>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+</head>
+<body>
+  <h2>チャットデモ</h2>
+  <input id="msgInput" placeholder="メッセージを入力">
+  <button onclick="send()">送信</button>
+  <ul id="messages"></ul>
+
+  <script>
+    const socket = io();
+
+    socket.on('response', function(data) {
+      const item = document.createElement('li');
+      item.textContent = data.msg;
+      document.getElementById('messages').appendChild(item);
+    });
+
+    function send() {
+      const msg = document.getElementById('msgInput').value;
+      socket.emit('message', msg);
+    }
+  </script>
+</body>
+</html>
